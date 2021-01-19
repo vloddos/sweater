@@ -31,7 +31,7 @@ public class MainController {
     ) {
         model.addAttribute(
                 "messages",
-                filter == null || filter.isEmpty() ?
+                filter.isEmpty() ?
                         messageRepository.findAll() :
                         messageRepository.findByTag(filter)
         );
@@ -51,18 +51,4 @@ public class MainController {
         model.put("messages", messageRepository.findAll());//todo remove code duplication
         return "main";
     }
-
-//    @PostMapping("filter")
-//    public String filter(
-//            @RequestParam String filter,
-//            Map<String, Object> model
-//    ) {
-//        model.put(
-//                "messages",
-//                filter == null || filter.isEmpty() ?
-//                        messageRepository.findAll() :
-//                        messageRepository.findByTag(filter)
-//        );
-//        return "main";
-//    }
 }
