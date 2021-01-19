@@ -25,8 +25,18 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
-        model.put("messages", messageRepository.findAll());//todo remove code duplication
+    public String main(
+            @RequestParam(required = false, defaultValue = "") String filter,
+            Model model
+    ) {
+        model.addAttribute(
+                "messages",
+                filter == null || filter.isEmpty() ?
+                        messageRepository.findAll() :
+                        messageRepository.findByTag(filter)
+        );
+        model.addAttribute("filter", filter);
+
         return "main";
     }
 
@@ -42,17 +52,17 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("filter")
-    public String filter(
-            @RequestParam String filter,
-            Map<String, Object> model
-    ) {
-        model.put(
-                "messages",
-                filter == null || filter.isEmpty() ?
-                        messageRepository.findAll() :
-                        messageRepository.findByTag(filter)
-        );
-        return "main";
-    }
+//    @PostMapping("filter")
+//    public String filter(
+//            @RequestParam String filter,
+//            Map<String, Object> model
+//    ) {
+//        model.put(
+//                "messages",
+//                filter == null || filter.isEmpty() ?
+//                        messageRepository.findAll() :
+//                        messageRepository.findByTag(filter)
+//        );
+//        return "main";
+//    }
 }

@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Spring Security Example</title>
-</head>
-<body>
-
-<div>Login page</div>
-
-<form action="/login" method="post">
+<#macro login path>
+<form action="${path}" method="post">
     <div>
         <label>
             User Name:
@@ -20,11 +12,14 @@
             <input type="password" name="password"/>
         </label>
     </div>
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     <div><input type="submit" value="Log In"/></div>
 </form>
+</#macro>
 
-<a href="/registration">Registration</a>
-
-</body>
-</html>
+<#macro logout>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <input type="submit" value="Log Out"/>
+</form>
+</#macro>
