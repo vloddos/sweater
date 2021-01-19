@@ -48,7 +48,8 @@ public class MainController {
             Map<String, Object> model
     ) {
         messageRepository.save(new Message(text, tag, user));
-        model.put("messages", messageRepository.findAll());//todo remove code duplication
+        model.put("messages", messageRepository.findAll());
+
         return "main";
     }
 }
