@@ -1,4 +1,4 @@
-<#macro login path>
+<#macro login path submitValue>
 <form action="${path}" method="post">
     <div>
         <label>
@@ -13,7 +13,7 @@
         </label>
     </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-    <div><input type="submit" value="Log In"/></div>
+    <div><input type="submit" value="${submitValue}"/></div>
 </form>
 </#macro>
 

@@ -3,6 +3,6 @@
 
 <@c.page>
     <div>Login page</div>
-    <@l.login "/login"/>
+    <@l.login "/login" "Log In"/>
     <a href="/registration">Registration</a>
 </@c.page>
